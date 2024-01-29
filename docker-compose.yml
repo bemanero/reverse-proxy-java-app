@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  # Java application service
+  java-app:
+    build: 
+      context: ./eportal
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+
+  # nginx reverse proxy service
+  nginx-reverse-proxy:
+    build: 
+      context: ./reverse-proxy-server
+      dockerfile: Dockerfile
+    ports:
+      - "81:80"
+    # depends_on:
+    #   - java-app
